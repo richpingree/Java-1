@@ -4,14 +4,34 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
+
+    //variables
+    EditText userTxt;
+    Button addBtn;
+    TextView itemCount;
+    TextView average;
+    ListView itemList;
+
+    ArrayList<String> items = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        userTxt = (EditText) findViewById(R.id.userInput);
+        itemCount = (TextView) findViewById(R.id.counterTxt);
+        average = (TextView) findViewById(R.id.averageChar);
+        itemList = (ListView) findViewById(R.id.listView);
     }
 
 
