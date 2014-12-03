@@ -30,7 +30,6 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
     TextView average;
     ListView itemList;
 
-
     ArrayList<String> items = new ArrayList<String>();
 
     @Override
@@ -51,7 +50,6 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
         itemList = (ListView) findViewById(R.id.listView);
         itemList.setOnItemClickListener(this);
 
-
     }
 
     @Override
@@ -60,7 +58,7 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
 
         if (items.contains(getInput)) {
 
-            Toast.makeText(getBaseContext(), "Item is already on the list..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Item is already on the list.", Toast.LENGTH_SHORT).show();
 
         }else
         if (getInput == null || getInput.isEmpty()) {
@@ -68,6 +66,7 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
             Toast.makeText(getApplicationContext(), "Blank Entry not allowed!", Toast.LENGTH_SHORT).show();
 
         }else {
+
             items.add(getInput);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, items);
             itemList.setAdapter(adapter);
@@ -78,7 +77,6 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
             itemCount.setText("Number of Entries: " + numItems);
 
             aveWordLength();
-
 
         }
 
@@ -115,7 +113,6 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
         });
 
         alertView.show();
-
 
     }
 }
