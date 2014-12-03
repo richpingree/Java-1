@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Counter"
+        android:text="Number of Entries: "
         android:id="@+id/counterTxt"
         android:layout_below="@+id/userInput"
         android:layout_alignParentLeft="true"
