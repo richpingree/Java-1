@@ -76,6 +76,7 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
             int numItems = items.size();
             itemCount.setText("Number of Entries: " + numItems);
 
+            //Average Word Length
             aveWordLength();
 
         }
@@ -84,6 +85,7 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
 
     private void aveWordLength() {
 
+        //Makes the array into a String
         String allItems = items.toString();
 
         //calculates each item length by subtracting the comma and space after string is added
