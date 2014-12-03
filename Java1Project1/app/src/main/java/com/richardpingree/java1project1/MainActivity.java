@@ -94,9 +94,9 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
         //Log.i("Pingree", countString);
 
         //the average length per word
-        int averageLenth = count / items.size();
+        int averageLength = count / items.size();
 
-        average.setText("Average Characters: " + averageLenth);
+        average.setText("Average Characters: " + averageLength);
     }
 
     @Override

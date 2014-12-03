@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Average Characters"
+        android:text="Average Characters:"
         android:id="@+id/averageChar"
         android:layout_below="@+id/counterTxt"
         android:layout_alignParentLeft="true"
