@@ -60,6 +60,7 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
 
             Toast.makeText(getBaseContext(), "Item is already on the list.", Toast.LENGTH_SHORT).show();
 
+
         }else
         if (getInput == null || getInput.isEmpty()) {
 
