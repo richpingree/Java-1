@@ -70,6 +70,7 @@ public class MainActivity extends Activity implements OnClickListener, AdapterVi
             items.add(getInput);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, items);
             itemList.setAdapter(adapter);
+            //resets the text field after entering data
             ((EditText) findViewById(R.id.userInput)).setText("");
 
             //Number of items
