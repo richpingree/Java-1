@@ -56,15 +56,15 @@ public class MainActivity extends Activity {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                            //sets values for detailed view
-                            SuperHeroes selected = (SuperHeroes)spinnerView.getItemAtPosition(position);
-                            String name = selected.name;
-                            String power = selected.power;
-                            String universe = selected.universe;
-                            intent.putExtra("value1", name);
-                            intent.putExtra("value2", power);
-                            intent.putExtra("value3", universe);
-                            startActivity(intent);
+                                //sets values for detailed view
+                                SuperHeroes selected = (SuperHeroes) spinnerView.getSelectedItem();
+                                String name = selected.name;
+                                String power = selected.power;
+                                String universe = selected.universe;
+                                intent.putExtra("value1", name);
+                                intent.putExtra("value2", power);
+                                intent.putExtra("value3", universe);
+                                startActivity(intent);
 
                         }
 
