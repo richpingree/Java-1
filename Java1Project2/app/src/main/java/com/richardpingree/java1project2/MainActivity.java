@@ -2,16 +2,24 @@ package com.richardpingree.java1project2;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends Activity {
+
+    public ArrayList<SuperHeroes> heroes = new ArrayList<SuperHeroes>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        heroes.add(new SuperHeroes("Superman", "Heat Vision", "DC"));
+        heroes.add(new SuperHeroes("Flash", "Super Speed", "DC"));
+        Log.i("Test", heroes.toString());
     }
 
 
