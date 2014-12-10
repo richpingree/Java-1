@@ -14,5 +14,5 @@ public class SuperHeroes {
         universe = _universe;
     }
 
-    public String toString(){return (name + " " + power + " " + universe);}
+    public String toString(){return (name);}
 }

@@ -1,6 +1,7 @@
 package com.richardpingree.java1project2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,13 +41,30 @@ public class MainActivity extends Activity {
 
         //Log.i("Test", heroes.toString());
 
+        //activity for detailed view
+        final Intent intent = new Intent(getBaseContext(), detailActivity.class);
+
+        //creates spinnerView
         spinnerView = (Spinner) findViewById(R.id.spinner);
                 if(spinnerView != null){
+                    //adds array to spinnerView
                     ArrayAdapter<SuperHeroes> spinAdapter = new ArrayAdapter<SuperHeroes>(this, android.R.layout.simple_spinner_dropdown_item, heroes);
                     spinnerView.setAdapter(spinAdapter);
+
+                    //onclick for spinner
                     spinnerView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                            //sets values for detailed view
+                            SuperHeroes selected = (SuperHeroes)spinnerView.getItemAtPosition(position);
+                            String name = selected.name;
+                            String power = selected.power;
+                            String universe = selected.universe;
+                            intent.putExtra("value1", name);
+                            intent.putExtra("value2", power);
+                            intent.putExtra("value3", universe);
+                            startActivity(intent);
 
                         }
 
@@ -59,9 +77,30 @@ public class MainActivity extends Activity {
 
                 }
                 else {
+                    //creates list view
                     list = (ListView) findViewById(R.id.listView);
+                    //adds array to list view
                     ArrayAdapter<SuperHeroes> listAdapter = new ArrayAdapter<SuperHeroes>(this, android.R.layout.simple_list_item_1, heroes);
                     list.setAdapter(listAdapter);
+
+                    //onclick for list view
+                    list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                        @Override
+                        public void onItemClick(AdapterView<?> parent,View view, int position, long id) {
+
+                            //sets values for detailed view
+                            SuperHeroes listselected = (SuperHeroes)list.getItemAtPosition(position);
+                            String name = listselected.name;
+                            String power = listselected.power;
+                            String universe = listselected.universe;
+                            intent.putExtra("value1", name);
+                            intent.putExtra("value2", power);
+                            intent.putExtra("value3", universe);
+                            startActivity(intent);
+
+                        }
+                    });
+
                 }
 
     }
