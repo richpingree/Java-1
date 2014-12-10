@@ -19,6 +19,7 @@ public class detailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
 
+
         Intent intent = getIntent();
         heroname = (TextView) findViewById(R.id.nametext);
         heropower =(TextView) findViewById(R.id.powertext);
@@ -29,7 +30,9 @@ public class detailActivity extends Activity {
         heroname.setText(name);
         heropower.setText(power);
         herouniverse.setText(universe);
+
     }
+
 
 
     @Override

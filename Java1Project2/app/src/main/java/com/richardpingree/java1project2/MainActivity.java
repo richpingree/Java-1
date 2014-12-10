@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,8 @@ public class MainActivity extends Activity {
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {
 
+                            //toast message if nothing from the spinner is selected, not possible with this project but useful with future ones
+                            Toast.makeText(getBaseContext(), "Nothing was selected", Toast.LENGTH_SHORT).show();
                         }
                     });
 

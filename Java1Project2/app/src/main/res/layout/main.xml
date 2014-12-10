@@ -17,7 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/spinner"
         android:layout_alignEnd="@+id/spinner"
-        android:textSize="45dp" />
+        android:textSize="40dp" />
 
     <Spinner
         android:layout_width="wrap_content"
