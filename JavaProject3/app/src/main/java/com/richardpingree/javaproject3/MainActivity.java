@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn = (Button) findViewById(R.id.button);
         btn.setOnClickListener(this);
 
-        //progress bar    
+        //progress bar
         proBar = (ProgressBar) findViewById(R.id.progressBar);
         proBar.setVisibility(View.INVISIBLE);
     }
@@ -113,6 +113,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             String jsonString = "";
 
+//            for (int i = 0; i < urls.length ; i++) {
+//                publishProgress(urls[i]);
+//
+//           }
+
             //collect api response
             for (URL queryURL: urls) {
                 try {
@@ -157,7 +162,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 //alert to tell user that artist not in database
 
                 AlertDialog.Builder alertView = new AlertDialog.Builder(MainActivity.this);
-                alertView.setTitle("Artists Not Found!");
+                alertView.setTitle("Artist Not Found!");
+                alertView.setMessage("Please try a different artist.");
                 alertView.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -168,6 +174,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
 
 
+
+            }
+
+
         }
-    }
+
 }
