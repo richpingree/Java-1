@@ -79,9 +79,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             new myTask().execute(queryURl);
             userInput.setText("");
 
-        }  catch (MalformedURLException e) {
-            Toast.makeText(getBaseContext(), "Artist not found!", Toast.LENGTH_LONG).show();
-            //e.printStackTrace();
+        }  catch (Exception e) {
+            Log.e("Test", "Bad URL call");
+            
         }
 
         if (isOnline()){
