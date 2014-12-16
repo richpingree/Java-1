@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     EditText userInput;
     Button btn;
+    ProgressBar proBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         btn = (Button) findViewById(R.id.button);
         btn.setOnClickListener(this);
+
+        //progress bar    
+        proBar = (ProgressBar) findViewById(R.id.progressBar);
+        proBar.setVisibility(View.INVISIBLE);
     }
 
     //detects if network is connected
@@ -99,7 +105,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
+            //proBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -145,6 +151,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if (apiData != null){
                 Artist result = new Artist(apiData);
                 updateDisplay(result);
+                //proBar.setVisibility(View.INVISIBLE);
+
             }else{
                 //alert to tell user that artist not in database
 
@@ -158,6 +166,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 });
                 alertView.show();
             }
+
 
         }
     }
