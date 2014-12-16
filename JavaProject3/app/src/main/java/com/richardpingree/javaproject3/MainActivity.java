@@ -62,6 +62,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         String getInput = userInput.getText().toString();
 
+        //replaces spaces with underscore and puts lowercase
         getInput = getInput.replaceAll(" ", "_").toLowerCase();
         //Log.i("Test", getInput);
         try {
