@@ -93,6 +93,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 try {
                     URLConnection conn = queryURL.openConnection();
                     jsonString = IOUtils.toString(conn.getInputStream());
+                    //removes brackets from api data
                     jsonString = jsonString.replace("[","");
                     jsonString = jsonString.replace("]","");
                     break;
