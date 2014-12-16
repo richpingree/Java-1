@@ -1,6 +1,10 @@
+//created by Richard Pingree
+
 package com.richardpingree.javaproject3;
 
+import android.app.Activity;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -37,10 +41,11 @@ public class Artist {
             artistCity = artistData.getString("city");
             artistState = artistData.getString("state");
         } catch (Exception e){
-            Log.e("Test", "Error occured.");
+
+            //Log.e("Test", "Error occured.");
         }
     }
-
+    //gets and sets data for object
     String getArtistName(){
         return artistName;
     }

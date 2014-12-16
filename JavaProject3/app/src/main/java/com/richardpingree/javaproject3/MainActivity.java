@@ -1,7 +1,11 @@
+//created by Richard Pingree
+
 package com.richardpingree.javaproject3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.nfc.Tag;
@@ -14,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
@@ -41,7 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn.setOnClickListener(this);
     }
 
-
+    //detects if network is connected
     protected boolean isOnline() {
         ConnectivityManager connMan = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = connMan.getActiveNetworkInfo();
@@ -60,19 +65,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
         getInput = getInput.replaceAll(" ", "_").toLowerCase();
         //Log.i("Test", getInput);
         try {
+            //Url for api
             String baseURL = "http://api.artistlink.com/home/accounts.json?auth_token=5xVzCSGTz4yNaaxyJbcs";
             URL queryURl = new URL(baseURL + "&name=" + getInput);
+            //executes asynctask
             new myTask().execute(queryURl);
             userInput.setText("");
 
         }  catch (MalformedURLException e) {
-            e.printStackTrace();
+            Toast.makeText(getBaseContext(), "Artist not found!", Toast.LENGTH_LONG).show();
+            //e.printStackTrace();
         }
 
         if (isOnline()){
-            Log.i("Test", "you have an internet connection.");
+            //Log.i("Test", "you have an internet connection.");
         } else
-            Log.i("Test", "internet not available");
+            //message for no network connection
+            Toast.makeText(getBaseContext(), "Not Connected to Network!", Toast.LENGTH_LONG).show();
+            //Log.i("Test", "internet not available");
 
     }
 
@@ -106,10 +116,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     jsonString = jsonString.replace("]","");
                     break;
                 } catch (Exception e) {
-                    Log.e("Test", "could not connect to network" + queryURL.toString());
+
+                    //Log.e("Test", "could not connect to network" + queryURL.toString());
                 }
             }
-            Log.i("Test", "recieved data" + jsonString);
+            //Log.i("Test", "recieved data" + jsonString);
 
 
             //api string to json
@@ -119,7 +130,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             try {
                 apiData = new JSONObject(jsonString);
             } catch (Exception e){
-                Log.e("Test", "can not convert");
+
+                //Log.e("Test", "can not convert");
                 apiData = null;
             }
 
@@ -128,8 +140,24 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(JSONObject apiData) {
-            Artist result = new Artist(apiData);
-            updateDisplay(result);
+            //returns data to display
+            if (apiData != null){
+                Artist result = new Artist(apiData);
+                updateDisplay(result);
+            }else{
+                //alert to tell user that artist not in database
+
+                AlertDialog.Builder alertView = new AlertDialog.Builder(MainActivity.this);
+                alertView.setTitle("Artists Not Found!");
+                alertView.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alertView.show();
+            }
+
         }
     }
 }
