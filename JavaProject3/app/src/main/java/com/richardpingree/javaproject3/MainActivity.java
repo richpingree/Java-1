@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -62,11 +63,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             String baseURL = "http://api.artistlink.com/home/accounts.json?auth_token=5xVzCSGTz4yNaaxyJbcs";
             URL queryURl = new URL(baseURL + "&name=" + getInput);
             new myTask().execute(queryURl);
+            userInput.setText("");
 
         }  catch (MalformedURLException e) {
             e.printStackTrace();
-        } {
-
         }
 
         if (isOnline()){
@@ -76,6 +76,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+    private void updateDisplay(Artist artist){
+        ((TextView) findViewById(R.id.nametxt)).setText(artist.getArtistName());
+        ((TextView) findViewById(R.id.genretxt)).setText(artist.getArtistGenre());
+        ((TextView) findViewById(R.id.labeltxt)).setText(artist.getArtistLabel());
+        ((TextView) findViewById(R.id.countrytxt)).setText(artist.getArtistCountry());
+        ((TextView) findViewById(R.id.citytxt)).setText(artist.getArtistCity());
+        ((TextView) findViewById(R.id.statetxt)).setText(artist.getArtistState());
+    }
     private class myTask extends AsyncTask<URL, Integer, JSONObject>{
 
         @Override
@@ -120,7 +128,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(JSONObject apiData) {
-
+            Artist result = new Artist(apiData);
+            updateDisplay(result);
         }
     }
 }

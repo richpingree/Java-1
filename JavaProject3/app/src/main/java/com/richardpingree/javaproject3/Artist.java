@@ -12,13 +12,20 @@ public class Artist {
     String artistName;
     String artistGenre;
     String artistLabel;
+    String artistCountry;
+    String artistCity;
+    String artistState;
 
     Artist(){}
 
-    Artist(String name, String genre, String label){
+    Artist(String name, String genre, String label, String country, String city, String state){
         artistName = name;
         artistGenre = genre;
         artistLabel = label;
+        artistCountry = country;
+        artistCity = city;
+        artistState = state;
+
     }
 
     Artist(JSONObject artistData){
@@ -26,6 +33,9 @@ public class Artist {
             artistName = artistData.getString("name");
             artistGenre = artistData.getString("genre");
             artistLabel = artistData.getString("label");
+            artistCountry = artistData.getString("country");
+            artistCity = artistData.getString("city");
+            artistState = artistData.getString("state");
         } catch (Exception e){
             Log.e("Test", "Error occured.");
         }
@@ -53,6 +63,29 @@ public class Artist {
 
     void setArtistLabel(String artistLabel) {
         this.artistLabel = artistLabel;
+    }
+
+    String getArtistCountry(){
+        return artistCountry;
+    }
+
+    void setArtistCountry(String artistCountry){
+        this.artistCountry = artistCountry;
+    }
+
+    String getArtistCity(){
+        return artistCity;
+    }
+
+    void setArtistCity(String artistCity){
+        this.artistCity = artistCity;
+    }
+    String getArtistState(){
+        return artistState;
+    }
+
+    void setArtistState(String artistState){
+        this.artistState = artistState;
     }
 
 }
