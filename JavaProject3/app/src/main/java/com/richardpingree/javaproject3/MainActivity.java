@@ -71,21 +71,30 @@ public class MainActivity extends Activity implements View.OnClickListener {
         //replaces spaces with underscore and puts lowercase
         getInput = getInput.replaceAll(" ", "_").toLowerCase();
         //Log.i("Test", getInput);
-        try {
-            //Url for api
+//        try {
+//            //Url for api
+//            String baseURL = "http://api.artistlink.com/home/accounts.json?auth_token=5xVzCSGTz4yNaaxyJbcs";
+//            URL queryURl = new URL(baseURL + "&name=" + getInput);
+//            //executes asynctask
+//            new myTask().execute(queryURl);
+//            userInput.setText("");
+//
+//        }  catch (Exception e) {
+//            Log.e("Test", "Bad URL call");
+//
+//        }
+        if (isOnline()){
+            //Log.i("Test", "you have an internet connection.");
             String baseURL = "http://api.artistlink.com/home/accounts.json?auth_token=5xVzCSGTz4yNaaxyJbcs";
-            URL queryURl = new URL(baseURL + "&name=" + getInput);
+            URL queryURl = null;
+            try {
+                queryURl = new URL(baseURL + "&name=" + getInput);
+            } catch (MalformedURLException e) {
+                //e.printStackTrace();
+            }
             //executes asynctask
             new myTask().execute(queryURl);
             userInput.setText("");
-
-        }  catch (Exception e) {
-            Log.e("Test", "Bad URL call");
-            
-        }
-
-        if (isOnline()){
-            //Log.i("Test", "you have an internet connection.");
         } else
             //message for no network connection
             Toast.makeText(getBaseContext(), "Not Connected to Network!", Toast.LENGTH_LONG).show();
@@ -93,6 +102,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
+    //updates display
     private void updateDisplay(Artist artist){
         ((TextView) findViewById(R.id.nametxt)).setText(artist.getArtistName());
         ((TextView) findViewById(R.id.genretxt)).setText(artist.getArtistGenre());
@@ -132,7 +142,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     //Log.e("Test", "could not connect to network" + queryURL.toString());
                 }
             }
-            //Log.i("Test", "recieved data" + jsonString);
+            //Log.i("Test", "received data" + jsonString);
 
 
             //api string to json
